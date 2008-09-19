@@ -1,85 +1,59 @@
 class DepositsController < ApplicationController
-  # GET /deposits
-  # GET /deposits.xml
-  def index
-    @deposits = Deposit.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @deposits }
-    end
-  end
-
-  # GET /deposits/1
-  # GET /deposits/1.xml
-  def show
-    @deposit = Deposit.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @deposit }
-    end
-  end
+  before_filter :find_bucket
+  before_filter :find_deposit, :only => [:show, :edit, :update, :destroy]
 
   # GET /deposits/new
   # GET /deposits/new.xml
   def new
-    @deposit = Deposit.new
+    @deposit = @bucket.deposits.new
 
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @deposit }
+      format.js
     end
   end
 
-  # GET /deposits/1/edit
-  def edit
-    @deposit = Deposit.find(params[:id])
-  end
 
   # POST /deposits
   # POST /deposits.xml
   def create
-    @deposit = Deposit.new(params[:deposit])
+    @deposit = @bucket.deposits.new(params[:deposit])
 
     respond_to do |format|
       if @deposit.save
         flash[:notice] = 'Deposit was successfully created.'
         format.html { redirect_to(@deposit) }
         format.xml  { render :xml => @deposit, :status => :created, :location => @deposit }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @deposit.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
 
-  # PUT /deposits/1
-  # PUT /deposits/1.xml
-  def update
-    @deposit = Deposit.find(params[:id])
-
-    respond_to do |format|
-      if @deposit.update_attributes(params[:deposit])
-        flash[:notice] = 'Deposit was successfully updated.'
-        format.html { redirect_to(@deposit) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @deposit.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /deposits/1
   # DELETE /deposits/1.xml
   def destroy
-    @deposit = Deposit.find(params[:id])
     @deposit.destroy
 
     respond_to do |format|
       format.html { redirect_to(deposits_url) }
       format.xml  { head :ok }
+      format.js
     end
+  end
+  
+  protected
+  
+  def find_bucket
+    @bucket = Bucket.find(params[:bucket_id])
+  end
+  
+  def find_deposit
+    @deposit = @bucket.deposits.find(params[:id])
   end
 end

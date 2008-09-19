@@ -1,0 +1,6 @@
+<tr id="<%= dom_id(deposit) %>">
+  <td><%= deposit.type %></td>
+  <td align="right"><%= number_to_currency(deposit.amount) %></td>
+  <td><%= deposit.description %></td>
+  <td><%= link_to_remote "delete", :url => bucket_deposit_path(@bucket, deposit), :method => :delete %></td>
+</tr>

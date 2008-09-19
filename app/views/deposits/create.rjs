@@ -1,0 +1,3 @@
+page.insert_html :top, :transaction_list, :partial => 'deposit', :object => @deposit
+page[:totals].replace :partial => 'buckets/totals'
+page[:transaction_form].slide_up

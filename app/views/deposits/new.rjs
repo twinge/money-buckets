@@ -1,0 +1,2 @@
+page[:transaction_form].replace_html :partial => 'ajax_form'
+page[:transaction_form].slide_down

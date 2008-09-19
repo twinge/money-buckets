@@ -1,3 +1,26 @@
+<h2><%= @bucket.name %></h2>
+<%= link_to_function 'Show/Hide Transactions', "$('#transactions').toggle('slide');" %>
+<div id="transactions" style="display:none;">
+<table>
+  <tbody id="transaction_list">
+    <tr>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Description</th>
+    </tr>
+    <%= render :partial => @bucket.transactions %>
 
+  </tbody>
+</table>
+</div>
+
+<%= render :partial => 'totals' %>
+<p>
+<%= link_to_remote 'Add Deposit', :url => new_bucket_deposit_path(@bucket) %> |
+<%= link_to_remote 'Add Expense', :url => new_bucket_expense_path(@bucket) %>
+</p>
+<div id="transaction_form"></div>
+<p>
 <%= link_to 'Edit', edit_bucket_path(@bucket) %> |
 <%= link_to 'Back', buckets_path %>
+</p>

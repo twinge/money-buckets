@@ -1,2 +1,2 @@
-class Deposit < ActiveRecord::Base
+class Deposit < Transaction
 end

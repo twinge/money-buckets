@@ -1,0 +1,10 @@
+<% remote_form_for(@deposit, :url => bucket_deposits_url(@bucket)) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <label for="deposit_amount">Amount:</label>
+    <%= f.text_field :amount %>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>

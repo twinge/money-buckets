@@ -1,0 +1,2 @@
+page.visual_effect(:fade, dom_id(@expense))
+page[:totals].replace :partial => 'buckets/totals'

@@ -1,12 +1,7 @@
 <h1>Editing bucket</h1>
 
-<% form_for(@bucket) do |f| %>
-  <%= f.error_messages %>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
+<%= render :partial => 'form' %>
 
 <%= link_to 'Show', @bucket %> |
 <%= link_to 'Back', buckets_path %>
