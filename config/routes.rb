@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :expenses
+
+  map.resources :deposits
+
+  map.resources :buckets
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
