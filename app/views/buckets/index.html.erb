@@ -1,0 +1,18 @@
+<h1>Listing buckets</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for bucket in @buckets %>
+  <tr>
+    <td><%= link_to 'Show', bucket %></td>
+    <td><%= link_to 'Edit', edit_bucket_path(bucket) %></td>
+    <td><%= link_to 'Destroy', bucket, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New bucket', new_bucket_path %>
