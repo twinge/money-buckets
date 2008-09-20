@@ -17,25 +17,36 @@
     }
   }
   function update_th() {
-    switch($('#bucket_auto_day').val()) {
-      case '1':
-        $('#th').html('st')
+    var day = $('#bucket_auto_day').val()
+    var th = '';
+    var digit = day.charAt(day.length - 1);
+    switch(true) {
+      case day == '11':
+      case day == '12':
+      case day == '13':
+        th = 'th';
+      break;
+      case digit == '1':
+        th = 'st';
       break;
       case 'last':
-        $('#th').html('')
+        th = '';
       break;
-      case '2':
-        $('#th').html('nd')
+      case digit == '2':
+        th = 'nd';
       break;
-      case '3':
-        $('#th').html('rd')
+      case digit == '3':
+        th = 'rd';
       break;
       default:
-        $('#th').html('th')
+        th = 'th';
       }
+      $('#th').html(th)
   }
+  
   $(function (){
     update_period();
+    $('#bucket_auto_day').val(<%= @bucket.auto_day %>)
     update_th();
   });
 </script>
@@ -52,6 +63,6 @@
     <span id="th">st</span> day of the <span id="period_text">week</span>
   </p>
   <p>
-    <%= f.submit "Save" %>
+    <%= f.submit "Save" %> or <%= link_to 'Cancel', :back, :class => 'cancel' %>
   </p>
 <% end %>

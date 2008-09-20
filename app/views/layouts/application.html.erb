@@ -5,13 +5,74 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Buckets: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'layout' %>
   <%= javascript_include_tag :defaults %>
+
 </head>
+
+
+
+
+
 <body>
-<%= render :partial => 'users/user_bar' %>
-<p style="color: green"><%= flash[:notice] %></p>
-<%= yield  %>
+<!-- GMX Homepage -->
+
+<!-- bodywidth : 960px wrap -->
+
+
+
+<div id="outer">
+<div id="headout">
+<div class="bodywidth">
+<div id="head">
+	<div id="logo">
+		<a href="/" class="homelogo">Bucket Budget</a>
+	</div><!-- logo -->
+
+	
+	<div class="clear"></div>
+</div><!-- head -->
+
+<div id="topmenu">
+	<div id="leftmenu">
+		<ul>
+      <li><a href="/buckets">My Buckets</a></li>
+
+<!--      <li><a href="">Tags</a></li>
+      <li><a href="">Popular</a></li>
+      <li><a href="">Recent</a></li> -->
+		</ul>
+	</div><!-- leftmenu -->
+
+	<div id="rightmenu">
+		<ul>
+
+			<li><%= link_to "My Profile", current_user %></li>
+		</ul>
+	</div><!-- rightmenu -->
+
+	<div class="clear"></div>
+
+</div><!-- topmenu -->
+</div><!-- bodywidth -->
+
+</div><!-- headout -->
+
+
+
+<div id="main">
+<div class="bodywidth">
+  <%= yield  %>
+</div><!-- bodywidth -->
+</div><!-- main -->
+
+
+
+
+
+</div><!-- outer -->
+
+
 
 </body>
 </html>
