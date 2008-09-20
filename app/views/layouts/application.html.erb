@@ -46,8 +46,10 @@
 
 	<div id="rightmenu">
 		<ul>
-
-			<li><%= link_to "My Profile", current_user %></li>
+    <%- if current_user -%>
+			<li><%= link_to "Log Out", '/logout' %></li>
+			<li><%= link_to "My Profile", edit_user_path(current_user) %></li>
+		<%- end -%>
 		</ul>
 	</div><!-- rightmenu -->
 

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # render new.rhtml
   def new
     @user = User.new
+    @submit = 'Sign up'
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
   
   def edit
     @user = current_user
+    @submit = "Save"
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = 'Profile was successfully updated.'
-        format.html { redirect_to(@user) }
+        format.html { redirect_to(buckets_path) }
         format.xml  { head :ok }
         format.iphone  { redirect_to(buckets_path) }
       else
