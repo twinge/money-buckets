@@ -46,6 +46,12 @@ class User < ActiveRecord::Base
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
   end
+  
+  def total_in_savings
+    total = 0.0
+    buckets.map(&:balance).each {|b| total += b}
+    return total
+  end
 
   protected
     

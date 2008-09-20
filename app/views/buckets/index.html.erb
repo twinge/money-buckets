@@ -8,9 +8,13 @@
 <% for bucket in @buckets %>
   <tr>
     <td><%= link_to bucket.name, bucket %></td>
-    <td><%= number_to_currency bucket.balance %></td>
+    <td align="right"><%= number_to_currency bucket.balance %></td>
   </tr>
 <% end %>
+<tr>
+  <td><strong>Total:</strong></td>
+  <td align="right"><strong><%= number_to_currency(current_user.total_in_savings) %></strong></td>
+</tr>
 </table>
 
 <br />
