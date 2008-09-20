@@ -117,7 +117,7 @@ body[orient="landscape"] > .toolbar > h1 {
     -webkit-border-image: url(/iui/backButton.png) 0 8 0 14;
 }
 
-#newBucket {
+#profile {
     right: 6px;
     left: auto;
     padding: 0;

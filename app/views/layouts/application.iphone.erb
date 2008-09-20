@@ -66,7 +66,7 @@ TD XHTML 1.0 Strict//EN"
         <h1 id="pageTitle">Money Buckets</h1>
         <a id="backButton" class="button" href="#"></a>
         <%- if current_user -%>
-        <a id="newBucket" class="button" href="<%= new_bucket_path %>">New Bucket</a>
+        <a id="profile" class="button" href="<%= edit_user_path(current_user) %>">Profile</a>
         <%- end -%>
     </div>
     <%= yield %>

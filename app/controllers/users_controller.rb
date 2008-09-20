@@ -5,6 +5,38 @@ class UsersController < ApplicationController
   # render new.rhtml
   def new
     @user = User.new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @user }
+      format.js
+      format.iphone { render :layout => false}
+    end
+  end
+  
+  def edit
+    @user = current_user
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @user }
+      format.js
+      format.iphone { render :layout => false}
+    end
+  end
+  
+  def update
+    @user = current_user
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        flash[:notice] = 'Profile was successfully updated.'
+        format.html { redirect_to(@user) }
+        format.xml  { head :ok }
+        format.iphone  { redirect_to(buckets_path) }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.iphone { render :action => "edit", :layout => false}
+      end
+    end
   end
  
   def create
