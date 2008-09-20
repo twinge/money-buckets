@@ -34,4 +34,8 @@ class Bucket < ActiveRecord::Base
       end
     end
   end
+  
+  def balance
+    transactions.sum(:amount)
+  end
 end

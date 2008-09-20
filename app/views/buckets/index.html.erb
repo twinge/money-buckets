@@ -1,10 +1,14 @@
 <h1>Listing buckets</h1>
 
 <table>
-
+<tr>
+  <th>Bucket</th>
+  <th>Balance</th>
+</tr>
 <% for bucket in @buckets %>
   <tr>
     <td><%= link_to bucket.name, bucket %></td>
+    <td><%= number_to_currency bucket.balance %></td>
   </tr>
 <% end %>
 </table>

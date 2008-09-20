@@ -45,7 +45,7 @@ class BucketsController < ApplicationController
     respond_to do |format|
       if @bucket.save
         flash[:notice] = 'Bucket was successfully created.'
-        format.html { redirect_to(@bucket) }
+        format.html { redirect_to(buckets_path) }
         format.xml  { render :xml => @bucket, :status => :created, :location => @bucket }
       else
         format.html { render :action => "new" }
