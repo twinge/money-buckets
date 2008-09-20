@@ -11,6 +11,7 @@ class ExpensesController < ApplicationController
       format.html # new.html.erb
       format.xml  { render :xml => @expense }
       format.js
+      format.iphone { render :layout => false}
     end
   end
 
@@ -26,10 +27,13 @@ class ExpensesController < ApplicationController
         format.html { redirect_to(@expense) }
         format.xml  { render :xml => @expense, :status => :created, :location => @expense }
         format.js
+        format.iphone { redirect_to(@bucket) }
       else
+        @expense.save!
         format.html { render :action => "new" }
         format.xml  { render :xml => @expense.errors, :status => :unprocessable_entity }
         format.js
+        format.iphone { render :action => "new", :layout => false }
       end
     end
   end
@@ -44,6 +48,7 @@ class ExpensesController < ApplicationController
       format.html { redirect_to(expenses_url) }
       format.xml  { head :ok }
       format.js
+      format.iphone { redirect_to(@bucket) }
     end
   end
   

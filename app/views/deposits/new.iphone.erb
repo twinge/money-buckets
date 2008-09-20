@@ -1,0 +1,11 @@
+  <% form_for(@deposit, :url => bucket_deposits_url(@bucket),
+                                    :html => {:id => "Deposit", :title => "Deposit",
+                                    :class => "panel", :selected => "true"}) do |f| %>
+  <fieldset>
+    <div class="row">
+      <label for="deposit_amount">Amount:</label>
+      <input id="deposit_amount" type="text" size="30" name="deposit[amount]"/>
+    </div>
+  </fieldset>
+  <a class="whiteButton" type="submit" href="#" target="_self">Post</a>
+  <% end %>

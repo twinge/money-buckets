@@ -11,6 +11,7 @@ class DepositsController < ApplicationController
       format.html # new.html.erb
       format.xml  { render :xml => @deposit }
       format.js
+      format.iphone { render :layout => false}
     end
   end
 
@@ -19,17 +20,19 @@ class DepositsController < ApplicationController
   # POST /deposits.xml
   def create
     @deposit = @bucket.deposits.new(params[:deposit])
-
+    
     respond_to do |format|
       if @deposit.save
         flash[:notice] = 'Deposit was successfully created.'
         format.html { redirect_to(@deposit) }
         format.xml  { render :xml => @deposit, :status => :created, :location => @deposit }
         format.js
+        format.iphone { redirect_to(@bucket) }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @deposit.errors, :status => :unprocessable_entity }
         format.js
+        format.iphone { render :action => "new", :layout => false }
       end
     end
   end
@@ -44,6 +47,7 @@ class DepositsController < ApplicationController
       format.html { redirect_to(deposits_url) }
       format.xml  { head :ok }
       format.js
+      format.iphone { redirect_to(@bucket) }
     end
   end
   

@@ -1,0 +1,4 @@
+<li id="<%= dom_id(expense) %>">
+  - <%= number_to_currency(expense.amount.abs) %>  
+  <%= " - " + expense.description unless expense.description.blank? %>
+</li>

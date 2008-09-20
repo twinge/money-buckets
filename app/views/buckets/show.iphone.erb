@@ -1,0 +1,13 @@
+<ul id="<%= @bucket.name %>" title="<%= @bucket.name %> Bucket" selected="true">
+<!-- <%= link_to_function 'Show/Hide Transactions', "$('#transactions').toggle('slide');" %>
+ -->
+
+<li><a href="#transactions">Balance: <%= number_to_currency(@bucket.balance) %></a></li>
+<li><%= link_to "Add Expense", new_bucket_expense_path(@bucket) %></li>
+<li><%= link_to "Add Deposit", new_bucket_deposit_path(@bucket) %></li>
+<li><%= link_to 'Edit Bucket', edit_bucket_path(@bucket) %></li>
+</ul>
+
+<ul id="transactions">
+    <%= render :partial => @bucket.transactions %>
+</ul>

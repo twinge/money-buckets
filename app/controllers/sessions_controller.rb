@@ -4,6 +4,11 @@ class SessionsController < ApplicationController
   
   # render new.rhtml
   def new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @bucket }
+      format.iphone
+    end
   end
 
   def create
@@ -23,7 +28,11 @@ class SessionsController < ApplicationController
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]
-      render :action => 'new'
+      respond_to do |format|
+        format.html { render :action => 'new' }
+        format.xml  { render :xml => @bucket }
+        format.iphone { render :action => 'new' }
+      end
     end
   end
 

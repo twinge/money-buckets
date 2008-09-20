@@ -1,0 +1,6 @@
+<ul id="buckets" title="Buckets" selected="true">
+  <% for bucket in @buckets %>
+    <li><%= link_to("#{bucket.name}: #{number_to_currency(bucket.balance)}", bucket) %></li>
+  <% end %>
+</ul>
+

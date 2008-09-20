@@ -1,0 +1,14 @@
+  <form id="Login" title="Login" class="panel" selected="true" action="<%= session_path %>" method="post" redirect="true">
+  <fieldset>
+    <div class="row">
+      <label>Username</label>
+      <%= text_field_tag 'login', @login %>
+    </div>
+
+    <div class="row">
+      <label>Password</label>
+      <%= password_field_tag 'password', nil %>
+    </div>
+  </fieldset>
+  <a class="whiteButton" type="submit" href="#" target="_self">Login</a>
+</form>

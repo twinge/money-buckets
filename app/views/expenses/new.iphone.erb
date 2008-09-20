@@ -1,0 +1,15 @@
+  <% form_for(@expense, :url => bucket_expenses_url(@bucket),
+                                    :html => {:id => "Expense", :title => "Expense",
+                                    :class => "panel", :selected => "true"}) do |f| %>
+  <fieldset>
+    <div class="row">
+      <label for="expense_amount">Amount:</label>
+      <input id="expense_amount" type="text" size="30" name="expense[amount]"/>
+    </div>
+    <div class="row">
+      <label for="expense_description">Description:</label>
+      <input id="expense_description" type="text" size="30" name="expense[description]"/>
+    </div>
+  </fieldset>
+  <a class="whiteButton" type="submit" href="#" target="_self">Post</a>
+  <% end %>
