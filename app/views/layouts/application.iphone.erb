@@ -3,16 +3,69 @@ TD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
   <title>Money Buckets</title>
   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
   <meta name="apple-touch-fullscreen" content="YES" />
-  <style type="text/css" media="screen">@import "/iui/iuix.css";</style>
+  <style type="text/css" media="screen">@import "/iui/iui.css";</style>
   <script type="application/x-javascript" src="/iui/iui.js"></script>
 
+  <script type="application/x-javascript">
+    function e(id) {
+      return document.getElementById(id);
+    }
+  
+    function update_period() {
+      var week_options = '<%= period_options("week") %>';
+      var month_options = '<%= period_options("month") %>';
+      var year_options = '<%= period_options("year") %>';
+      period = e('bucket_auto_period').value;
+      e('period_text').innerHTML = period;
+      switch(period) {
+        case 'week':
+          e('bucket_auto_day').innerHTML = week_options;
+        break;
+        case 'month':
+          e('bucket_auto_day').innerHTML = month_options;
+        break;
+        case 'year':
+          e('bucket_auto_day').innerHTML = year_options;
+        break;
+      }
+    }
+    function update_th() {
+      var day = e('bucket_auto_day').value;
+      var th = '';
+      var digit = day.charAt(day.length - 1);
+      switch(true) {
+        case day == '11':
+        case day == '12':
+        case day == '13':
+          th = 'th';
+        case digit == '1':
+          th = 'st';
+        break;
+        case 'last':
+          th = '';
+        break;
+        case digit == '2':
+          th = 'nd';
+        break;
+        case digit == '3':
+          th = 'rd';
+        break;
+        default:
+          th = 'th';
+        }
+        e('th').innerHTML = th
+    }
+  </script>
+</head>
   <body>
     <div class="toolbar">
         <h1 id="pageTitle">Money Buckets</h1>
         <a id="backButton" class="button" href="#"></a>
+        <a id="newBucket" class="button" href="<%= new_bucket_path %>">New Bucket</a>
     </div>
     <%= yield %>
   </body>

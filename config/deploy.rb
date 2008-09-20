@@ -11,6 +11,7 @@ set :deploy_to, "/var/www/#{application}"
 set :scm, "git"
 set :scm_passphrase, "alt60m" #This is your custom users password
 set :user, "deploy"
+set :use_sudo, false
 
 
 role :app, "mb.26am.com"

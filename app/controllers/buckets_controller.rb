@@ -55,11 +55,11 @@ class BucketsController < ApplicationController
         flash[:notice] = 'Bucket was successfully created.'
         format.html { redirect_to(buckets_path) }
         format.xml  { render :xml => @bucket, :status => :created, :location => @bucket }
-        format.iphone { render :layout => false}
+        format.iphone { redirect_to(buckets_path) }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @bucket.errors, :status => :unprocessable_entity }
-        format.iphone { render :layout => false}
+        format.iphone { render :action => "new", :layout => false}
       end
     end
   end
@@ -68,17 +68,16 @@ class BucketsController < ApplicationController
   # PUT /buckets/1.xml
   def update
     @bucket = current_user.buckets.find(params[:id])
-
     respond_to do |format|
       if @bucket.update_attributes(params[:bucket])
         flash[:notice] = 'Bucket was successfully updated.'
         format.html { redirect_to(@bucket) }
         format.xml  { head :ok }
-        format.iphone { render :layout => false}
+        format.iphone  { redirect_to(@bucket) }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @bucket.errors, :status => :unprocessable_entity }
-        format.iphone { render :layout => false}
+        format.iphone { render :action => "edit", :layout => false}
       end
     end
   end

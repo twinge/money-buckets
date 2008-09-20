@@ -3,6 +3,8 @@ class Bucket < ActiveRecord::Base
   has_many :expenses
   has_many :transactions, :order => "created_at desc"
   
+  validates_presence_of :name
+  
   def self.process_auto
     today = Date.today
     # Weekly
