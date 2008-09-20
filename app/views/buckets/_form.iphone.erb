@@ -1,0 +1,23 @@
+<% form_for(@bucket,  :html => {:id => "Bucket", :title => "Bucket",
+                      :class => "panel", :selected => "true"}) do |f| %>
+  <fieldset>
+  <div class="row">
+    <label for="bucket_name">Name:</label> 
+    <input id="bucket_name" type="text" size="30" name="bucket[name]" value="<%= @bucket.name %>" />
+  </div>
+  <div class="row">
+    <label>Automatically deposit $</label>
+    <%= f.text_field :auto_amount, :size => 2, :class => "small" %>
+  </div>
+  <div class="row">
+    <label>every </label>
+    <%= f.select :auto_period, ['week','month','year'], {:selected => @bucket.auto_period || 'month'}, :onchange => 'update_period();' %>
+  </div>
+  <div class="row">
+    <label>on the </label><%= f.select :auto_day, period_values(@bucket.auto_period), {}, :onchange => 'update_th()' %>
+    <span id="th"><%= th(@bucket.auto_day) %></span> day of the <span id="period_text"><%= @bucket.auto_period %></span>
+  </div>
+
+  <a class="whiteButton" type="submit" href="#" target="_self">Save</a>
+<% end %>
+

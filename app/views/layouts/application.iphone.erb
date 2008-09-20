@@ -65,7 +65,9 @@ TD XHTML 1.0 Strict//EN"
     <div class="toolbar">
         <h1 id="pageTitle">Money Buckets</h1>
         <a id="backButton" class="button" href="#"></a>
+        <%- if current_user -%>
         <a id="newBucket" class="button" href="<%= new_bucket_path %>">New Bucket</a>
+        <%- end -%>
     </div>
     <%= yield %>
   </body>
