@@ -2,7 +2,7 @@ class BucketsController < ApplicationController
   # GET /buckets
   # GET /buckets.xml
   def index
-    @buckets = Bucket.find(:all)
+    @buckets = current_user.buckets.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class BucketsController < ApplicationController
   # GET /buckets/1
   # GET /buckets/1.xml
   def show
-    @bucket = Bucket.find(params[:id])
+    @bucket = current_user.buckets.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +24,7 @@ class BucketsController < ApplicationController
   # GET /buckets/new
   # GET /buckets/new.xml
   def new
-    @bucket = Bucket.new
+    @bucket = current_user.buckets.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +34,13 @@ class BucketsController < ApplicationController
 
   # GET /buckets/1/edit
   def edit
-    @bucket = Bucket.find(params[:id])
+    @bucket = current_user.buckets.find(params[:id])
   end
 
   # POST /buckets
   # POST /buckets.xml
   def create
-    @bucket = Bucket.new(params[:bucket])
+    @bucket = current_user.buckets.new(params[:bucket])
 
     respond_to do |format|
       if @bucket.save
@@ -57,7 +57,7 @@ class BucketsController < ApplicationController
   # PUT /buckets/1
   # PUT /buckets/1.xml
   def update
-    @bucket = Bucket.find(params[:id])
+    @bucket = current_user.buckets.find(params[:id])
 
     respond_to do |format|
       if @bucket.update_attributes(params[:bucket])
@@ -74,12 +74,17 @@ class BucketsController < ApplicationController
   # DELETE /buckets/1
   # DELETE /buckets/1.xml
   def destroy
-    @bucket = Bucket.find(params[:id])
+    @bucket = current_user.buckets.find(params[:id])
     @bucket.destroy
 
     respond_to do |format|
       format.html { redirect_to(buckets_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def process_auto
+    Bucket.process_auto
+    render :nothing => true
   end
 end

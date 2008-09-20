@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :deposits
 
-  map.resources :buckets, :has_many => [:deposits, :expenses]
+  map.resources :buckets, :collection => {:process_auto => :get}, :has_many => [:deposits, :expenses]
 
   # The priority is based upon order of creation: first created -> highest priority.
 

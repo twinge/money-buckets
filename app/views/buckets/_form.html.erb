@@ -1,9 +1,55 @@
-
+<script>
+  function update_period() {
+    var week_options = '<%= options_for_select((1..7).to_a).gsub("\n", '') %>';
+    var month_options = '<%= options_for_select((1..28).to_a << "last").gsub("\n", '') %>';
+    var year_options = '<%= options_for_select((1..365).to_a).gsub("\n", '') %>';
+    $('#period_text').html($('#bucket_auto_period').val());
+    switch($('#bucket_auto_period').val()) {
+      case 'week':
+        $('#bucket_auto_day').html(week_options);
+      break;
+      case 'month':
+        $('#bucket_auto_day').html(month_options);
+      break;
+      case 'year':
+        $('#bucket_auto_day').html(year_options);
+      break;
+    }
+  }
+  function update_th() {
+    switch($('#bucket_auto_day').val()) {
+      case '1':
+        $('#th').html('st')
+      break;
+      case 'last':
+        $('#th').html('')
+      break;
+      case '2':
+        $('#th').html('nd')
+      break;
+      case '3':
+        $('#th').html('rd')
+      break;
+      default:
+        $('#th').html('th')
+      }
+  }
+  $(function (){
+    update_period();
+    update_th();
+  });
+</script>
 <% form_for(@bucket) do |f| %>
   <%= f.error_messages %>
   <p>
     <label for="bucket_name">Name:</label> 
     <%= f.text_field :name %>
+  </p>
+  <p>
+    Automatically deposit $<%= f.text_field :auto_amount, :size => 5 %> every 
+    <%= f.select :auto_period, ['week','month','year'], {}, :onchange => 'update_period()' %>
+    on the <%= f.select :auto_day, (1..7).to_a, {}, :onchange => 'update_th()' %>
+    <span id="th">st</span> day of the <span id="period_text">week</span>
   </p>
   <p>
     <%= f.submit "Save" %>
