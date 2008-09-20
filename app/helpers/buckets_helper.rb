@@ -28,6 +28,7 @@ module BucketsHelper
   
   def th(day)
     day ||= '1'
+    day.to_s
     case true
     when ['11','12','13'].include?(day)
       'th'
