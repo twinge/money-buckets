@@ -36,7 +36,11 @@
 <div id="topmenu">
 	<div id="leftmenu">
 		<ul>
+		  <%- if current_user -%>
       <li><a href="/buckets">My Buckets</a></li>
+      <%- else -%>
+      <li><a href="/signin">Log In</a></li>
+      <%- end -%>
 
 <!--      <li><a href="">Tags</a></li>
       <li><a href="">Popular</a></li>
