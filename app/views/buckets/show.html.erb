@@ -3,12 +3,15 @@
 
 <div id="transactions" style="display:none;">
 <table>
-  <tbody id="transaction_list">
+  <thead>
     <tr>
       <th>Type</th>
       <th>Amount</th>
+      <th>Date</th>
       <th>Description</th>
     </tr>
+  </thead>
+  <tbody id="transaction_list">
     <%= render :partial => @bucket.transactions %>
 
   </tbody>

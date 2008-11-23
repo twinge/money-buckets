@@ -2,5 +2,6 @@
   <td><%= deposit.type %></td>
   <td align="right"><%= number_to_currency(deposit.amount) %></td>
   <td><%= deposit.description %></td>
+  <td><%= deposit.created_at.to_s(:short) %></td>
   <td><%= link_to_remote "delete", :url => bucket_deposit_path(@bucket, deposit), :method => :delete %></td>
 </tr>

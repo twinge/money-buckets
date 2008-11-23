@@ -2,5 +2,6 @@
   <td><%= expense.type %></td>
   <td align="right"><%= number_to_currency(expense.amount) %></td>
   <td><%= expense.description %></td>
+  <td><%= expense.created_at.to_s(:short) %></td>
   <td><%= link_to_remote "delete", :url => bucket_expense_path(@bucket, expense), :method => :delete %></td>
 </tr>
