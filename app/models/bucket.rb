@@ -33,7 +33,7 @@ class Bucket < ActiveRecord::Base
   end
   
   private 
-    def process_amount(bucket)
+    def self.process_amount(bucket)
       if !bucket.auto_amount.nil? 
         if bucket.auto_amount > 0
           bucket.deposits << Deposit.new(:amount => bucket.auto_amount)
