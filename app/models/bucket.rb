@@ -38,7 +38,7 @@ class Bucket < ActiveRecord::Base
         if bucket.auto_amount > 0
           bucket.deposits << Deposit.new(:amount => bucket.auto_amount)
         else
-          bucket.expenses << Expense.new(:amount => bucket.auto_amount, :description => 'Auto-monthly')
+          bucket.expenses << Expense.new(:amount => (0 - bucket.auto_amount), :description => 'Auto-monthly')
         end
         bucket.save(false)
       end

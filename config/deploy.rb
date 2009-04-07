@@ -9,8 +9,8 @@ set :deploy_to, "/var/www/#{application}"
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
 set :scm, "git"
-set :scm_passphrase, "alt60m" #This is your custom users password
-set :user, "deploy"
+# set :scm_passphrase, "alt60m" #This is your custom users password
+# set :user, "deploy"
 set :use_sudo, false
 
 
@@ -19,7 +19,7 @@ role :web, "mb.26am.com"
 role :db,  "mb.26am.com", :primary => true
 
 ssh_options[:forward_agent] = true
-ssh_options[:port] = 40022
+ssh_options[:port] = 22
 
 set :branch, "master"
 set :deploy_via, :remote_cache
